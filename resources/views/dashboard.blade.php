@@ -107,9 +107,11 @@
             height: 50vh;
         }
         .chart {
-            margin-top: 50px;
+            margin: 5px; 
+            padding: 10px;
             border-radius: 24px;
             background-color: rgb(255, 255, 255);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a slight shadow for better look */
         }
         h2 {
             margin-top: 10px;
@@ -194,7 +196,7 @@
             <h2>HISTORI DATA</h2>
             <div class="row">
                 <div class="col-md-6 col-sm-12 chart-container">
-                    <div class="chart">
+                    <div class="chart ">
                         <canvas id="lineChart1"></canvas>
                     </div>
                 </div>
@@ -243,101 +245,118 @@
             document.getElementById('time3').innerText = dateTime;
             document.getElementById('time4').innerText = dateTime;
         }
-        
-        // Update the date and time every second
-        setInterval(updateDateTime, 1000);
-
-        // Fetch data from ThingSpeak
         fetch('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD&results=1')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // Log untuk melihat data yang dikembalikan
-                const lastEntry = data.feeds[data.feeds.length - 1];
-                console.log(lastEntry); // Log untuk melihat data entry terakhir
-                const suhu = parseFloat(lastEntry.field3).toFixed(2);
-                document.getElementById('suhu').innerText = suhu + ' C';
+        .then(response => response.json())
+        .then(data => {
+        console.log(data); // Log untuk melihat data yang dikembalikan
+        const lastEntry = data.feeds[data.feeds.length - 1];
+        console.log(lastEntry); // Log untuk melihat data entry terakhir
+        const suhu = parseFloat(lastEntry.field3).toFixed(2);
+        document.getElementById('suhu').innerText = suhu + ' C';
+        document.getElementById('last_entry_id').innerText = 'ID: ' + data.channel.last_entry_id;
+    })
+    .catch(error => console.error('Error:', error)); // Log untuk melihat jika terjadi error
+
+        setInterval(updateDateTime, 1000);
+        async function fetchData(url) {
+            const response = await fetch(url);
+            return response.json();
+        }
+
+        async function updateCharts() {
+            const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/2.json?api_key=1WCAPVC94C3AB1TD');
+            const dataGelombang = await fetchData('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD');
+            const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD');
+
+            const labels = dataSuhu.feeds.map(feed => new Date(feed.created_at).toLocaleTimeString('id-ID'));
+            const suhuData = dataSuhu.feeds.map(feed => parseFloat(feed.field2).toFixed(2));
+            const gelombangData = dataGelombang.feeds.map(feed => parseFloat(feed.field3).toFixed(2));
+            const cuacaData = dataCuaca.feeds.map(feed => parseFloat(feed.field4).toFixed(2));
+
+            const ctx1 = document.getElementById('lineChart1').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Suhu',
+                        data: suhuData,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
 
-        var ctx1 = document.getElementById('lineChart1').getContext('2d');
-        var lineChart1 = new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Suhu',
-                    data: [12, 19, 3, 5, 2, 3, 7],
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        beginAtZero: true
+            const ctx2 = document.getElementById('lineChart2').getContext('2d');
+            new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Gelombang',
+                        data: gelombangData,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        var ctx2 = document.getElementById('lineChart2').getContext('2d');
-        var lineChart2 = new Chart(ctx2, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Gelombang',
-                    data: [3, 5, 1, 6, 9, 4, 7],
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        beginAtZero: true
+            const ctx3 = document.getElementById('lineChart3').getContext('2d');
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Cuaca',
+                        data: cuacaData,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 2,
+                        fill: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        var ctx3 = document.getElementById('lineChart3').getContext('2d');
-        var lineChart3 = new Chart(ctx3, {
-            type: 'line',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'Cuaca',
-                    data: [12, 19, 3, 5, 2, 3, 7],
-                    borderColor: 'rgba(255, 159, 64, 1)',
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        beginAtZero: true
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        updateCharts();
+        setInterval(updateCharts, 10000);
     </script>
 </body>
 </html>

@@ -198,7 +198,7 @@
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
-        background-color: #005D9A;
+        background-color: #dfe7ec81;
     }
 
     .benefits-section {
@@ -239,75 +239,43 @@
             font-weight: bold;
         }
         .contact-section {
-            background-color: #f4f4f4;
-            padding: 40px;
-        }
+    background-color: #f4f4f4;
+    padding: 40px;
+}
 
-        .contact-section h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .contact-section h2 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-        .contact-item {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+    .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+    }
 
-        .contact-form {
-            text-align: left;
-        }
+    .contact-form .form-label {
+        font-size: 18px;
+        display: block;
+        margin-bottom: 5px;
+    }
 
-        .contact-form label {
-            font-size: 18px;
-            display: block;
-            margin-bottom: 5px;
-        }
+    .contact-form .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
 
-        .contact-form input, .contact-form textarea {
-            width: calc(100% - 40px);
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            display: inline-block;
-            vertical-align: middle;
-        }
+    .contact-form .btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 
-        .contact-form img {
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        .contact-form button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #005D9A;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .contact-form button[type="reset"] {
-            background-color: white;
-            color: #005D9A;
-            border: 2px solid #005D9A;
-        }
-
-        .contact-form button[type="reset"]:hover {
-            background-color: #f4f4f4;
-        }
-
-        .contact-form .submit-btn {
-            float: right;
-            margin-top: 10px;
-        }
-
-        .contact-form .reset-btn {
-            float: left;
-            margin-top: 10px;
-        }
         .footer-section {
             background-color: #005D9A; /* Warna biru */
             color: white; /* Font warna putih */
@@ -484,53 +452,37 @@
             <li><b>Keterjangkauan Teknologi</b> menggunakan teknologi LoRa yang lebih murah dan hemat energi dibandingkan dengan solusi berbasis internet, sehingga lebih terjangkau bagi nelayan kecil dan komunitas maritim di daerah terpencil.</li>
             <li><b>Kemudahan antarmuka pengguna</b> yang intuitif dan mudah digunakan serta panduan penggunaan yang jelas membuat nelayan dapat mengoperasikan sistem tanpa memerlukan pelatihan khusus.</li>
             <li><b>Pemantauan Lingkungan</b> berdasarkan data yang dikumpulkan oleh sensor suhu dan gelombang dapat digunakan untuk pemantauan kondisi lingkungan laut, membantu dalam penelitian dan upaya konservasi.</li>
-            <li><><b>Respon Cepat terhadap Insiden</b>dengan fitur otomatis yang dapat mengirimkan notifikasi ke otoritas maritim terdekat saat terdeteksi kondisi darurat, mempercepat proses penyelamatan dan bantuan di laut.</li>
+            <li><b>Respon Cepat terhadap Insiden</b>dengan fitur otomatis yang dapat mengirimkan notifikasi ke otoritas maritim terdekat saat terdeteksi kondisi darurat, mempercepat proses penyelamatan dan bantuan di laut.</li>
             </ul>
             </p>
         </div>
 </section>
+<!-- Contact Section -->
 <section class="contact-section">
-    <div>
-    <h2>Informasi Kontak SHIP ALERT</h2>
-    </div>
-    <div class="row">
-        <div class="">
-            <h3>Formulir Kontak</h3>
-            <form class="contact-form">
-                <div class="form-group">
-                    <img src="path/to/email-icon.png" alt="Logo Email">
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <img src="path/to/phone-icon.png" alt="Logo Telepon">
-                    <input type="text" id="phone" name="phone" placeholder="Nomor Telepon" required>
-                </div>
-                <div class="form-group">
-                    <img src="path/to/address-icon.png" alt="Logo Alamat">
-                    <input type="text" id="address" name="address" placeholder="Alamat Instansi" required>
-                </div>
-                <div class="form-group">
-                    <img src="path/to/instagram-icon.png" alt="Logo Instagram">
-                    <input type="text" id="instagram" name="instagram" placeholder="Instagram" required>
-                </div>
-                <label for="name">Nama:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="subject">Subjek:</label>
-                <input type="text" id="subject" name="subject" required>
-                
-                <label for="message">Pesan:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-                
-                <button type="reset" class="reset-btn">Clear Isi</button>
-                <button type="submit" class="submit-btn">Kirim</button>
-            </form>
-        </div>
+    <h2 style="text-align: center;">Contact Us</h2>
+    <div class="contact-form">
+        <form action="/send-mail" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="reset" class="btn btn-secondary">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
 </section>
+
 <section class="footer-section">
         <h2><b>SHIP ALERT</b></h2>
         <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>

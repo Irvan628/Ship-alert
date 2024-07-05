@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHIP ALERT</title>
+    <title> <b>SHIP ALERT</b> </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -357,13 +357,13 @@
             </p>
         </div> -->
         <div>
-        <h2 style="text-align: center;"> <b>Filosofi Logo</b> </h2>
-        <img src="{{ asset('asset/filosofi.jpeg') }}" alt="SHIP ALERT Logo">
+        <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>
+        <img src="{{ asset('asset/filosofi_logo2.png') }}" alt="SHIP ALERT Logo">
         </div>
     </section>
     <section class="team">
         <div>
-            <h2><b>Tim SHIP ALERT</b></h2>
+            <h2 style="text-align: center; font-size: 40px;"><b>Tim SHIP ALERT</b></h2>
             <img src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT" style="width: 1100px; height: 450px;">
             <div class="team-members">
                 <img src="{{ asset('asset/pembimbing.png') }}" alt="Pembimbing">
@@ -491,7 +491,7 @@
 </section>
 <section class="contact-section">
     <div>
-    <h2>Informasi Kontak SHIP ALERT</h2>
+        <h2>Informasi Kontak SHIP ALERT</h2>
     </div>
     <div class="row">
         <div class="">

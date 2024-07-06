@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHIP ALERT</title>
+    <title> <b>SHIP ALERT</b> </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -325,13 +325,13 @@
             </p>
         </div> -->
         <div>
-        <h2 style="text-align: center;"> <b>Filosofi Logo</b> </h2>
-        <img src="{{ asset('asset/filosofi.jpeg') }}" alt="SHIP ALERT Logo">
+        <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>
+        <img src="{{ asset('asset/filosofi_logo2.png') }}" alt="SHIP ALERT Logo">
         </div>
     </section>
     <section class="team">
         <div>
-            <h2><b>Tim SHIP ALERT</b></h2>
+            <h2 style="text-align: center; font-size: 40px;"><b>Tim SHIP ALERT</b></h2>
             <img src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT" style="width: 1100px; height: 450px;">
             <div class="team-members">
                 <img src="{{ asset('asset/pembimbing.png') }}" alt="Pembimbing">
@@ -481,6 +481,45 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
+    <div>
+        <h2>Informasi Kontak SHIP ALERT</h2>
+    </div>
+    <div class="row">
+        <div class="">
+            <h3>Formulir Kontak</h3>
+            <form class="contact-form">
+                <div class="form-group">
+                    <img src="path/to/email-icon.png" alt="Logo Email">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <img src="path/to/phone-icon.png" alt="Logo Telepon">
+                    <input type="text" id="phone" name="phone" placeholder="Nomor Telepon" required>
+                </div>
+                <div class="form-group">
+                    <img src="path/to/address-icon.png" alt="Logo Alamat">
+                    <input type="text" id="address" name="address" placeholder="Alamat Instansi" required>
+                </div>
+                <div class="form-group">
+                    <img src="path/to/instagram-icon.png" alt="Logo Instagram">
+                    <input type="text" id="instagram" name="instagram" placeholder="Instagram" required>
+                </div>
+                <label for="name">Nama:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="subject">Subjek:</label>
+                <input type="text" id="subject" name="subject" required>
+                
+                <label for="message">Pesan:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                
+                <button type="reset" class="reset-btn">Clear Isi</button>
+                <button type="submit" class="submit-btn">Kirim</button>
+            </form>
+        </div>
     </div>
 </section>
 

@@ -521,7 +521,7 @@
         </div>
     </div>
 </section>
-<section class="footer-section bg-light py-4">
+<section class="footer-section bg-blue py-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

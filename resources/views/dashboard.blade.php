@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="icon" href="{{ asset('asset/logo2.png') }}" type="image/icon type">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
@@ -94,11 +95,11 @@
             right: 10px;
         }
         #section1, #section2 {
-            min-height: 100vh; /* Full viewport height */
+            min-height: 100vh; 
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            padding: 10px 0; /* Padding top and bottom for section */
+            padding: 10px 0; 
         }
         #section2 {
             background-color: #2F7EB2;     

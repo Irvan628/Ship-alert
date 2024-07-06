@@ -461,7 +461,7 @@
         </div>
 </section>
 <section class="Sosmed">
-<div class="container mt-5 mb-5">
+<div class="container mt-5">
     <h2><b>Sosial Media Kami</b></h2>
     <div class="row">
         <div class="col-md-4 mb-4">
@@ -521,20 +521,13 @@
         </div>
     </div>
 </section>
-<section class="footer-section bg-blue py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mb-3"><b>SHIP ALERT</b></h2>
-                <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <div class="d-flex justify-content-md-end mb-2">
-                    <img src="{{ asset('asset/instagram.png') }}" alt="Logo Instagram" class="me-2" style="width: 24px; height: 24px;">
-                    <img src="{{ asset('asset/email.png') }}" alt="Logo Email" style="width: 24px; height: 24px;">
-                </div>
-                <p>@2024 SHIP ALERT. All Rights Reserved.</p>
-            </div>
+
+<section class="footer-section">
+        <h2><b>SHIP ALERT</b></h2>
+        <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>
+        <div>
+            <img src="{{ asset('asset/instagram.png') }}" alt="Logo Email">
+            <img src="{{ asset('asset/email.png') }}" alt="Logo Instagram">
         </div>
     </div>
 </section>

@@ -550,7 +550,6 @@
             <script async src="//www.instagram.com/embed.js"></script>
         </div>
     </div>
-</section>
 <section class="footer-section">
         <h2><b>SHIP ALERT</b></h2>
         <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>

@@ -7,7 +7,8 @@
     <link rel="icon" type="image/png" href="{{ asset('asset/logo_title.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -279,19 +280,46 @@
         cursor: pointer;
         border-radius: 5px;
     }
-
-        .footer-section {
-            background-color: #005D9A; /* Warna biru */
-            color: white; /* Font warna putih */
-            padding: 20px;
+    .footer-section {
+            background-color: #005D9A;
+            color: #fff;
+            padding: 40px 0;
+        }
+        .footer-section .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-section .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-section .logo span {
+            color: #000000;
+        }
+        .footer-section p {
+            margin: 10px 0;
+        }
+        .footer-section .social-icons img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .footer-section .bottom-text {
             text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+            margin-top: 20px;
         }
 
-        .footer-section img {
-            margin: 0 10px;
-            vertical-align: middle;
+        .instagram-icon {
+            color: #ffffff; /* Warna ikon default */
+            font-size: 45px; /* Ukuran ikon */
+            margin: 10px; 
         }
-
     </style>
 </head>
 <body>
@@ -522,17 +550,28 @@
         </div>
     </div>
 </section>
-
-<section class="footer-section">
-        <h2><b>SHIP ALERT</b></h2>
-        <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>
+<footer class="footer-section">
+    <div class="container">
         <div>
-            <img src="{{ asset('asset/instagram.png') }}" alt="Logo Email">
-            <img src="{{ asset('asset/email.png') }}" alt="Logo Instagram">
+            <div class="logo">
+                SHIP ALERT<span>+</span>
+            </div>
+            <p>Bersama kami meningkatkan keselamatan maritim dengan teknologi LoRa tanpa ketergantungan internet.</p>
+            <p>© 2024 SHIP ALERT. All Rights Reserved.</p>
         </div>
-        <p>@2024 SHIP ALERT. All Rights Reserved.</p>
-    </section>
-
+        <div>
+           
+        </div>
+    </div>
+    <div class="bottom-text">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/ship.allert?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color: #E1306C;">
+                <i class="fab fa-instagram instagram-icon"></i>
+            </a>
+           
+        </div>
+    </div>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

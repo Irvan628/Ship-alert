@@ -15,6 +15,7 @@
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
+    padding: 0;
 }
 .container {
     width: 80%;
@@ -343,7 +344,8 @@ section {
 /* For devices with a width of 768px or less */
 @media (max-width: 768px) {
     .container {
-        width: 95%;
+        width: 100%;
+        height: 100vh;
     }
 
     .header img {
@@ -360,7 +362,7 @@ section {
     }
 
     .header button {
-        width: 250px;
+        width: 350px;
         height: 50px;
         font-size: 0.9em;
         padding: 10px 20px;
@@ -373,12 +375,13 @@ section {
     .ship_alert p {
         padding-left: 20px;
         padding-right: 20px;
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .logos img {
-        width: 400px;
-        height: auto;
+        width: 600px;
+        margin-bottom: 70rem;
+        
     }
 
     .solutions p {
@@ -393,12 +396,12 @@ section {
     .container {
         width: 100%;
         padding: 10px;
-        height: 90vh;
+        height: 100vh;
     }
 
     .header img {
-        width: 120px;
-        height: auto;
+        width: 170px;
+        margin-top: -60px;
     }
 
     .header h1 {
@@ -412,12 +415,12 @@ section {
     .header button {
         width: 300px;
         height: 50px;
-        font-size: 0.8em;
+        font-size: 1em;
         padding: 8px 16px;
     }
 
     .ship_alert img {
-        width: 300px;
+        width: 400px;
     }
 
     .ship_alert p {
@@ -427,8 +430,7 @@ section {
     }
 
     .logos img {
-        width: 300px;
-    
+        width: 490px;
     }
 
     .solutions p {

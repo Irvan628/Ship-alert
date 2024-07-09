@@ -2,439 +2,476 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHIP ALERT</title>
     <link rel="icon" type="image/png" href="{{ asset('asset/logo_title.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-   
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        section {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-       
-        .header button {
-            background-color: #5bc0de;
-            color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 24px;
-            width: 350px;
-            height: 70px;
-            display: inline-block;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .header button:hover {
-            background-color: #39a2d5;
-        }
-        .logos p {
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .ship_alert {
-            background-color: #39a2d5;
-            color: white;
-            padding: 40px 20px;
-            border-radius: 8px;
-        }
-        .ship_alert img {
-            width: 600px;
-            margin-bottom: 20px;
-        }
-        .ship_alert h2 {
-            font-size: 40px;
-            margin-bottom: 80px;
-        }
-        .ship_alert p {
-            font-size: 26px;
-            margin-bottom: 0;
-            margin-top: 50;
-            text-align: justify;
-            padding-left: 100px;
-            padding-right: 100px;
-        }
-        .filosofi {
-            background-color: #f4f4f4;
-            padding: 40px;
-            text-align: justify;
-        }
-        .filosofi img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .filosofi p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .team {
-            background-color: #005D9A;
-            padding: 40px;
-            text-align: center;
-        }
-        .team img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .team .team-members {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .team .team-members img {
-            width: 202px;
-            height: 215px;
-            object-fit: cover;
-        }
-        .team h2 {
-            color: #F0EADE;
-            justify-content: center;
-            font-family: 'Inter', sans-serif;
-            margin-bottom: 20px;
-            margin-top: 0px;
-        }
-        .solutions {
-        background-color: #f4f4f4;
-        padding: 40px;
-        text-align: center;
-    }
-
-    .solutions h2 {
-        font-size: 40px;
-        margin-bottom: 20px;
-        color: black;
-    }
-
-    .solutions p {
-        font-size: 24px;
-        margin-bottom: 40px;
-        margin-left: 50px;
-        margin-right: 50px;
-        text-align: justify;
-    }
-
-    .card {
-        border: 2px solid #39a2d5;
-        border-radius: 10px;
-        width: 350px;
-        height: 300px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-
-    .card:hover {
-        background-color: #39a2d5;
-        color: white;
-    }
-
-    .card-title {
-        font-size: 24px;
-        font-weight: bold;
-    }
-
-    .card-img {
-        width: 300px;
-        height: 200px;
-        object-fit: cover;
-        object-position: center;
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5%;
-    }
-
-    .carousel-inner {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-
-    .carousel-item {
-        flex: 0 0 auto;
-        width: 100%;
-    }
-
-    .carousel-item .row {
-        justify-content: center;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: #dfe7ec81;
-    }
-
-    .benefits-section {
-            background-color: #005D9A; /* Warna biru */
-            color: white; /* Font warna putih */
-            padding: 40px;
-            text-align: center;
-        }
-
-        .benefits-section h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .benefits-section ul {
-            font-size: 24px;
-            list-style-type: none; /* Menghilangkan bullet points */
-            padding: 0;
-            margin: 0 100px; /* Padding 100px di kanan dan kiri */
-            text-align: justify;
-        }
-
-        .benefits-section ul li {
-            margin-bottom: 15px;
-        }
-
-        .benefits-section ul li::before {
-            content: counter(item) ". ";
-            counter-increment: item;
-            font-weight: bold;
-        }
-
-        .benefits-section ul {
-            counter-reset: item;
-        }
-
-        .benefits-section ul li b {
-            font-weight: bold;
-        }
-        .contact-section {
+    body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+section {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.header img {
+    width: 213px;
+    height: 209px;
+    margin-top: 50px;
+}
+.header h1 {
+    margin: 20px 0 10px;
+    font-size: 90px;
+}
+.header p {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+.header button {
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 24px;
+    width: 350px;
+    height: 70px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.header button:hover {
+    background-color: #39a2d5;
+}
+.logos p {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.logos img {
+    width: 665px;
+    height: 90px;
+    margin: 50 15px;
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+.ship_alert {
+    background-color: #39a2d5;
+    color: white;
+    padding: 40px 20px;
+    border-radius: 8px;
+}
+.ship_alert img {
+    width: 600px;
+    margin-bottom: 20px;
+}
+.ship_alert h2 {
+    font-size: 40px;
+    margin-bottom: 80px;
+}
+.ship_alert p {
+    font-size: 26px;
+    margin-bottom: 0;
+    margin-top: 50;
+    text-align: justify;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+.filosofi {
+    background-color: #f4f4f4;
+    padding: 40px;
+    text-align: justify;
+}
+.filosofi img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.filosofi p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.team {
+    background-color: #005D9A;
+    padding: 40px;
+    text-align: center;
+}
+.team img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+.team .team-members {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.team .team-members img {
+    width: 202px;
+    height: 215px;
+    object-fit: cover;
+}
+.team h2 {
+    color: #F0EADE;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+.solutions {
+    background-color: #f4f4f4;
+    padding: 40px;
+    text-align: center;
+}
+.solutions h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: black;
+}
+.solutions p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: justify;
+}
+.card {
+    border: 2px solid #39a2d5;
+    border-radius: 10px;
+    width: 350px;
+    height: 300px;
+    transition: background-color 0.3s, color 0.3s;
+}
+.card:hover {
+    background-color: #39a2d5;
+    color: white;
+}
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+.card-img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+.carousel-inner {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.carousel-item {
+    flex: 0 0 auto;
+    width: 100%;
+}
+.carousel-item .row {
+    justify-content: center;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #dfe7ec81;
+}
+.benefits-section {
+    background-color: #005D9A; /* Warna biru */
+    color: white; /* Font warna putih */
+    padding: 40px;
+    text-align: center;
+}
+.benefits-section h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.benefits-section ul {
+    font-size: 24px;
+    list-style-type: none; /* Menghilangkan bullet points */
+    padding: 0;
+    margin: 0 100px; /* Padding 100px di kanan dan kiri */
+    text-align: justify;
+}
+.benefits-section ul li {
+    margin-bottom: 15px;
+}
+.benefits-section ul li::before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: bold;
+}
+.benefits-section ul {
+    counter-reset: item;
+}
+.benefits-section ul li b {
+    font-weight: bold;
+}
+.contact-section {
     background-color: #f4f4f4;
     padding: 40px;
 }
+.contact-section h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+.contact-form .form-label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+.contact-form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.contact-form .btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.footer-section {
+    background-color: #005D9A;
+    color: #fff;
+    padding: 40px 0;
+}
+.footer-section .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.footer-section .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+.footer-section .logo span {
+    color: #000000;
+}
+.footer-section p {
+    margin: 10px 0;
+}
+.footer-section .social-icons img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+.footer-section .bottom-text {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+}
+.instagram-icon {
+    color: #ffffff; /* Warna ikon default */
+    font-size: 45px; /* Ukuran ikon */
+    margin: 10px; 
+}
 
-    .contact-section h2 {
-        font-size: 40px;
-        margin-bottom: 20px;
-        text-align: center;
+/* Media Queries */
+
+/* For devices with a width of 1024px or less */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
     }
 
-    .contact-form {
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: left;
+    .header h1 {
+        font-size: 70px;
     }
 
-    .contact-form .form-label {
+    .header p {
+        font-size: 24px;
+    }
+
+    .header button {
+        width: 300px;
+        height: 60px;
+        font-size: 1em;
+        padding: 15px 30px;
+    }
+
+    .ship_alert img {
+        width: 500px;
+    }
+
+    .ship_alert p {
+        padding-left: 50px;
+        padding-right: 50px;
+        font-size: 22px;
+    }
+
+    .logos img {
+        width: 500px;
+        height: auto;
+    }
+
+    .solutions p {
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 20px;
+    }
+}
+
+/* For devices with a width of 768px or less */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .header img {
+        width: 300px;
+        height: auto;
+        margin-top: -70px;
+    }
+
+    .header h1 {
+        font-size: 70px;
+    }
+
+    .header p {
+        font-size: 20px;
+    }
+
+    .header button {
+        width: 350px;
+        height: 60px;
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+
+    .ship_alert img {
+        width: 400px;
+    }
+
+    .ship_alert p {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 20px;
+    }
+
+    .logos img {
+        width: 600px;
+        margin-bottom: 70rem;
+        
+    }
+
+    .solutions p {
+        margin-left: 10px;
+        margin-right: 10px;
         font-size: 18px;
-        display: block;
-        margin-bottom: 5px;
     }
+}
 
-    .contact-form .form-control {
+/* For devices with a width of 576px or less */
+@media (max-width: 576px) {
+    .container {
         width: 100%;
         padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        height: 100vh;
     }
 
-    .contact-form .btn {
-        padding: 10px 20px;
+    .header img {
+        width: 170px;
+        margin-top: -60px;
+    }
+
+    .header h1 {
+        font-size: 50px;
+    }
+
+    .header p {
         font-size: 18px;
-        cursor: pointer;
-        border-radius: 5px;
     }
-    .footer-section {
-            background-color: #005D9A;
-            color: #fff;
-            padding: 40px 0;
-        }
-        .footer-section .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .footer-section .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .footer-section .logo span {
-            color: #000000;
-        }
-        .footer-section p {
-            margin: 10px 0;
-        }
-        .footer-section .social-icons img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-        .footer-section .bottom-text {
-            text-align: center;
-            padding: 20px 0;
-            border-top: 1px solid #333;
-            margin-top: 20px;
-        }
 
-        .instagram-icon {
-            color: #ffffff; /* Warna ikon default */
-            font-size: 45px; /* Ukuran ikon */
-            margin: 10px; 
-        }
+    .header button {
+        width: 300px;
+        height: 50px;
+        font-size: 1em;
+        padding: 8px 16px;
+    }
 
-        .header img {
-            max-width: 100px !important;
-            height: auto;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 3rem;
-        }
-        .header p {
-            font-size: 1.5rem;
-        }
-        .header button {
-            font-size: 1.25rem;
-            padding: 10px 30px;
-        }
-        .logos img {
-            max-width: 300px;
-            height: auto;
-            margin-top: 20px;
-        }
+    .ship_alert img {
+        width: 400px;
+    }
 
-        @media (max-width: 1024px) {
-            .header img {
-                max-width: 500px !important;
-            }
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            .header p {
-                font-size: 1.25rem;
-            }
-            .header button {
-                font-size: 1.1rem;
-                padding: 8px 25px;
-            }
-            .logos img {
-                max-width: 490px !important;
-            }
-        }
+    .ship_alert p {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+    }
 
-        @media (max-width: 768px) {
-            .header img {
-                max-width: 90px !important;
-            }
-            .header h1 {
-                font-size: 2rem;
-            }
-            .header p {
-                font-size: 1rem;
-            }
-            .header button {
-                font-size: 1rem;
-                padding: 8px 20px;
-            }
-            .logos img {
-                max-width: 200px !important;
-            }
-        }
+    .logos img {
+        width: 490px;
+    }
 
-        @media (max-width: 576px) {
-            .header img {
-                max-width: 200px !important;
-            }
-            .header h1 {
-                font-size: 1.75rem;
-            }
-            .header p {
-                font-size: 0.875rem;
-            }
-            .header button {
-                font-size: 0.75rem;
-                padding: 6px 15px;
-            }
-            .logos img {
-                max-width: 300px !important;
-            }
-        }
+    .solutions p {
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 16px;
+    }
 
-        @media (max-width: 450px) {
-            .header img {
-                max-width: 200px !important;
-            }
-            .header h1 {
-                font-size: 2rem;
-            }
-            .header p {
-                font-size: 0.75rem;
-            }
-            .header button {
-                font-size: 1rem;
-                padding: 5px 15px;
-            }
-            .logos img {
-                max-width: 400px !important;
-            }
-        }
+    .team .team-members img {
+        width: 150px;
+        height: auto;
+    }
+}
 
-        @media (max-width: 320px) {
-            .header img {
-                max-width: 300px !important;
-            }
-            .header h1 {
-                font-size: 3rem;
-            }
-            .header p {
-                font-size: 0.625rem;
-            }
-            .header button {
-                font-size: 0.625rem;
-                padding: 5px 10px;
-            }
-            .logos img {
-                max-width: 80px !important;
-            }
-        }
+      
     </style>
 </head>
 <body>
-   <div class="container">
+    <div class="container">
         <section class="header">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-12 text-center">
-                    <img src="{{ asset('asset/ship_alert.png') }}" alt="SHIP ALERT Logo" class="img-fluid">
-                    <h1><i><b>SHIP ALERT</b></i></h1>
-                    <p>“SHIP-ALERT” (Smart Hazard Identification Protocol): Sistem Pintar Peringatan Kecelakaan Kapal tanpa Internet berbasis LoRa.</p>
-                    <button class="btn btn-primary"><b>Lacak Kapal</b></button>
-                </div>
+            <div>
+                <img src="{{ asset('asset/ship_alert.png') }}" alt="SHIP ALERT Logo">
+                <h1><i><b>SHIP ALERT</b></i></h1>
+                <p>“SHIP-ALERT” (Smart Hazard Identification Protocol): Sistem Pintar Peringatan Kecelakaan Kapal tanpa Internet berbasis LoRa.</p>
+                <button><b>Lacak Kapal</b></button>
             </div>
         </section>
         <section class="logos">
-            <div class="text-center">
-                <img src="{{ asset('asset/logo_banyak.png') }}" alt="Supported Logos" class="img-fluid">
+            <div>
+                <img src="{{ asset('asset/logo_banyak.png') }}" alt="Supported Logos">
             </div>
         </section>
     </div>
+    <section class="ship_alert">
+        <div>
+            <h2> <b>Apa Itu SHIP ALERT?</b> </h2>
+            <img src="{{ asset('asset/logo_putih.png') }}" alt="SHIP ALERT Logo">
+            <p>Proyek "SHIP ALERT" (Smart Hazard Identification Protocol) bertujuan untuk mengembangkan sistem pintar yang mampu memberikan peringatan dini terkait kecelakaan kapal tanpa memerlukan koneksi internet, menggunakan teknologi LoRa. Sistem ini dirancang untuk meningkatkan keselamatan dan keamanan nelayan dan awak kapal di wilayah yang sulit dijangkau jaringan internet. Target luaran meliputi pengembangan perangkat keras dengan berbagai sensor dan modul LoRa, serta perangkat lunak berupa aplikasi desktop untuk pemantauan data real-time dan informasi cuaca. Pengujian dan validasi sistem dilakukan untuk memastikan fungsionalitas dalam berbagai kondisi lingkungan, dengan melibatkan pengguna akhir untuk mendapatkan umpan balik. Dokumentasi lengkap dan panduan penggunaan yang jelas memudahkan operasional bagi nelayan.</p>
+        </div>
+    </section>
     <section class="filosofi">
         <div>
         <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>

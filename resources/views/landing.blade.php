@@ -349,12 +349,13 @@ section {
     }
 
     .header img {
-        width: 150px;
+        width: 300px;
         height: auto;
+        margin-top: -70px;
     }
 
     .header h1 {
-        font-size: 50px;
+        font-size: 70px;
     }
 
     .header p {
@@ -363,8 +364,8 @@ section {
 
     .header button {
         width: 350px;
-        height: 50px;
-        font-size: 0.9em;
+        height: 60px;
+        font-size: 1.2em;
         padding: 10px 20px;
     }
 

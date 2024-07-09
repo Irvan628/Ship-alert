@@ -65,6 +65,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-bottom: 20px; /* Ensure there's spacing between boxes */
         }
         .info-title {
             font-size: 32px;
@@ -181,10 +182,19 @@
                             <div class="info-box">
                                 <div class="info-time" id="time4">Tanggal / Jam</div>
                                 <div class="info-title1">Lokasi</div>
-                                <div class="info-value1">Lat :<br> Long :</div>
-                            </div>
+                                <div class="info-value1">Lat : <span id="latitude">-</span><br> Long : <span id="longitude">-</span></div>
+                            </div> 
+                        </div>   
+                        <div class="col-md-6 col-sm-6 mb-4">
+                            <div class="info-box" style="background-color: green; color: white;">
+                                <div class="info-time" id="time5">Tanggal / Jam</div>
+                                <div class="info-title1">Status</div>
+                                <div class="info-value1">Aman</div>
+                            </div>    
                         </div>
-                        <button class="btn-reset">Reset Tracking</button>
+                        
+                            <button class="btn-reset">Reset Tracking</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,25 +232,25 @@
     <script>
         // Initialize map
         var map = L.map('map').setView([-6.292430293657109, 106.72546172243526], 15);
-
+    
         // Add OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
+    
         // Add a marker to the map at the specified coordinates
         var marker = L.marker([-6.292430293657109, 106.72546172243526]).addTo(map);
         marker.bindPopup("<b>Lokasi</b><br>Ini adalah lokasi marker.").openPopup();
-
+    
         // Ensure the map occupies the entire screen
         map.invalidateSize();
-
+    
         window.addEventListener('resize', function () {
             setTimeout(function () {
                 map.invalidateSize();
             }, 100);
         });
-
+    
         function updateDateTime() {
             var now = new Date();
             var dateTime = now.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
@@ -248,8 +258,9 @@
             document.getElementById('time2').innerText = dateTime;
             document.getElementById('time3').innerText = dateTime;
             document.getElementById('time4').innerText = dateTime;
+            document.getElementById('time5').innerText = dateTime;
         }
-
+    
         fetch('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD&results=1')
         .then(response => response.json())
         .then(data => {
@@ -258,24 +269,24 @@
             document.getElementById('suhu').innerText = suhu + ' C';
         })
         .catch(error => console.error('Error:', error));
-
+    
         setInterval(updateDateTime, 1000);
-
+    
         async function fetchData(url) {
             const response = await fetch(url);
             return response.json();
         }
-
+    
         async function updateCharts() {
             const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/2.json?api_key=1WCAPVC94C3AB1TD');
             const dataGelombang = await fetchData('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD');
             const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD');
-
+    
             const labels = dataSuhu.feeds.map(feed => new Date(feed.created_at).toLocaleTimeString('id-ID'));
             const suhuData = dataSuhu.feeds.map(feed => parseFloat(feed.field2).toFixed(2));
             const gelombangData = dataGelombang.feeds.map(feed => parseFloat(feed.field3).toFixed(2));
             const cuacaData = dataCuaca.feeds.map(feed => parseFloat(feed.field4).toFixed(2));
-
+    
             const ctx1 = document.getElementById('lineChart1').getContext('2d');
             new Chart(ctx1, {
                 type: 'line',
@@ -302,7 +313,7 @@
                     }
                 }
             });
-
+    
             const ctx2 = document.getElementById('lineChart2').getContext('2d');
             new Chart(ctx2, {
                 type: 'line',
@@ -329,7 +340,7 @@
                     }
                 }
             });
-
+    
             const ctx3 = document.getElementById('lineChart3').getContext('2d');
             new Chart(ctx3, {
                 type: 'line',
@@ -357,9 +368,27 @@
                 }
             });
         }
-
+    
         updateCharts();
         setInterval(updateCharts, 10000);
+    
+        async function updateMap() {
+            const data = await fetchData('https://api.thingspeak.com/channels/1976791/feeds.json?api_key=1WCAPVC94C3AB1TD&results=1');
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const latitude = parseFloat(lastEntry.field1);
+            const longitude = parseFloat(lastEntry.field2);
+            const markerPosition = [latitude, longitude];
+    
+            marker.setLatLng(markerPosition);
+            map.setView(markerPosition, 15);
+    
+            document.getElementById('latitude').innerText = latitude;
+            document.getElementById('longitude').innerText = longitude;
+        }
+    
+        updateMap();
+        setInterval(updateMap, 10000);
     </script>
+    
 </body>
 </html>

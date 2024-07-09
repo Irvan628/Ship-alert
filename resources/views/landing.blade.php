@@ -2,14 +2,14 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>SHIP ALERT</title>
     <link rel="icon" type="image/png" href="{{ asset('asset/logo_title.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+   
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -28,19 +28,7 @@
             justify-content: center;
             text-align: center;
         }
-        .header img {
-            width: 213px;
-            height: 209px;
-            margin-top: 50px;
-        }
-        .header h1 {
-            margin: 20px 0 10px;
-            font-size: 90px;
-        }
-        .header p {
-            font-size: 30px;
-            margin-bottom: 20px;
-        }
+       
         .header button {
             background-color: #5bc0de;
             color: white;
@@ -62,13 +50,6 @@
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 10px;
-        }
-        .logos img {
-            width: 665px;
-            height: 90px;
-            margin: 50 15px;
-            vertical-align: middle;
-            margin-bottom: 20px;
         }
         .ship_alert {
             background-color: #39a2d5;
@@ -318,31 +299,142 @@
             font-size: 45px; /* Ukuran ikon */
             margin: 10px; 
         }
+
+        .header img {
+            max-width: 100px !important;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 3rem;
+        }
+        .header p {
+            font-size: 1.5rem;
+        }
+        .header button {
+            font-size: 1.25rem;
+            padding: 10px 30px;
+        }
+        .logos img {
+            max-width: 300px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .header img {
+                max-width: 500px !important;
+            }
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header p {
+                font-size: 1.25rem;
+            }
+            .header button {
+                font-size: 1.1rem;
+                padding: 8px 25px;
+            }
+            .logos img {
+                max-width: 490px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header img {
+                max-width: 90px !important;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .header button {
+                font-size: 1rem;
+                padding: 8px 20px;
+            }
+            .logos img {
+                max-width: 200px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header img {
+                max-width: 200px !important;
+            }
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            .header p {
+                font-size: 0.875rem;
+            }
+            .header button {
+                font-size: 0.75rem;
+                padding: 6px 15px;
+            }
+            .logos img {
+                max-width: 300px !important;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .header img {
+                max-width: 200px !important;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 0.75rem;
+            }
+            .header button {
+                font-size: 1rem;
+                padding: 5px 15px;
+            }
+            .logos img {
+                max-width: 400px !important;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .header img {
+                max-width: 300px !important;
+            }
+            .header h1 {
+                font-size: 3rem;
+            }
+            .header p {
+                font-size: 0.625rem;
+            }
+            .header button {
+                font-size: 0.625rem;
+                padding: 5px 10px;
+            }
+            .logos img {
+                max-width: 80px !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+   <div class="container">
         <section class="header">
-            <div>
-                <img src="{{ asset('asset/ship_alert.png') }}" alt="SHIP ALERT Logo">
-                <h1><i><b>SHIP ALERT</b></i></h1>
-                <p>“SHIP-ALERT” (Smart Hazard Identification Protocol): Sistem Pintar Peringatan Kecelakaan Kapal tanpa Internet berbasis LoRa.</p>
-                <button><b>Lacak Kapal</b></button>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 text-center">
+                    <img src="{{ asset('asset/ship_alert.png') }}" alt="SHIP ALERT Logo" class="img-fluid">
+                    <h1><i><b>SHIP ALERT</b></i></h1>
+                    <p>“SHIP-ALERT” (Smart Hazard Identification Protocol): Sistem Pintar Peringatan Kecelakaan Kapal tanpa Internet berbasis LoRa.</p>
+                    <button class="btn btn-primary"><b>Lacak Kapal</b></button>
+                </div>
             </div>
         </section>
         <section class="logos">
-            <div>
-                <img src="{{ asset('asset/logo_banyak.png') }}" alt="Supported Logos">
+            <div class="text-center">
+                <img src="{{ asset('asset/logo_banyak.png') }}" alt="Supported Logos" class="img-fluid">
             </div>
         </section>
     </div>
-    <section class="ship_alert">
-        <div>
-            <h2> <b>Apa Itu SHIP ALERT?</b> </h2>
-            <img src="{{ asset('asset/logo_putih.png') }}" alt="SHIP ALERT Logo">
-            <p>Proyek "SHIP ALERT" (Smart Hazard Identification Protocol) bertujuan untuk mengembangkan sistem pintar yang mampu memberikan peringatan dini terkait kecelakaan kapal tanpa memerlukan koneksi internet, menggunakan teknologi LoRa. Sistem ini dirancang untuk meningkatkan keselamatan dan keamanan nelayan dan awak kapal di wilayah yang sulit dijangkau jaringan internet. Target luaran meliputi pengembangan perangkat keras dengan berbagai sensor dan modul LoRa, serta perangkat lunak berupa aplikasi desktop untuk pemantauan data real-time dan informasi cuaca. Pengujian dan validasi sistem dilakukan untuk memastikan fungsionalitas dalam berbagai kondisi lingkungan, dengan melibatkan pengguna akhir untuk mendapatkan umpan balik. Dokumentasi lengkap dan panduan penggunaan yang jelas memudahkan operasional bagi nelayan.</p>
-        </div>
-    </section>
     <section class="filosofi">
         <div>
         <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>

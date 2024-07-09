@@ -235,30 +235,32 @@
         // Ensure the map occupies the entire screen
         map.invalidateSize();
 
+        window.addEventListener('resize', function () {
+            setTimeout(function () {
+                map.invalidateSize();
+            }, 100);
+        });
+
         function updateDateTime() {
             var now = new Date();
-            var date = now.toLocaleDateString('id-ID');
-            var time = now.toLocaleTimeString('id-ID');
-            var dateTime = date + ' / ' + time;
-            
+            var dateTime = now.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
             document.getElementById('time1').innerText = dateTime;
             document.getElementById('time2').innerText = dateTime;
             document.getElementById('time3').innerText = dateTime;
             document.getElementById('time4').innerText = dateTime;
         }
+
         fetch('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD&results=1')
         .then(response => response.json())
         .then(data => {
-        console.log(data); // Log untuk melihat data yang dikembalikan
-        const lastEntry = data.feeds[data.feeds.length - 1];
-        console.log(lastEntry); // Log untuk melihat data entry terakhir
-        const suhu = parseFloat(lastEntry.field3).toFixed(2);
-        document.getElementById('suhu').innerText = suhu + ' C';
-        document.getElementById('last_entry_id').innerText = 'ID: ' + data.channel.last_entry_id;
-    })
-    .catch(error => console.error('Error:', error)); // Log untuk melihat jika terjadi error
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const suhu = parseFloat(lastEntry.field3).toFixed(2);
+            document.getElementById('suhu').innerText = suhu + ' C';
+        })
+        .catch(error => console.error('Error:', error));
 
         setInterval(updateDateTime, 1000);
+
         async function fetchData(url) {
             const response = await fetch(url);
             return response.json();

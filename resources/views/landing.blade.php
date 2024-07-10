@@ -8,10 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-    body {
+ /* CSS Responsif untuk bagian .solutions dan elemen lainnya */
+
+body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -32,7 +36,7 @@ section {
 .header img {
     width: 213px;
     height: 209px;
-    margin-top: 50px;
+    margin-top: -10px;
 }
 .header h1 {
     margin: 20px 0 10px;
@@ -78,12 +82,13 @@ section {
     border-radius: 8px;
 }
 .ship_alert img {
-    width: 600px;
+    width: 500px;
     margin-bottom: 20px;
 }
 .ship_alert h2 {
     font-size: 40px;
     margin-bottom: 80px;
+    margin-top:10px;
 }
 .ship_alert p {
     font-size: 26px;
@@ -117,6 +122,10 @@ section {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
+}
+.team-image {
+    width: 1100px;
+    height: 450px;
 }
 .team .team-members {
     display: flex;
@@ -154,7 +163,6 @@ section {
     text-align: justify;
 }
 .card {
-    border: 2px solid #39a2d5;
     border-radius: 10px;
     width: 350px;
     height: 300px;
@@ -174,25 +182,7 @@ section {
     object-fit: cover;
     object-position: center;
 }
-.carousel-control-prev,
-.carousel-control-next {
-    width: 5%;
-}
-.carousel-inner {
-    display: flex;
-    flex-wrap: nowrap;
-}
-.carousel-item {
-    flex: 0 0 auto;
-    width: 100%;
-}
-.carousel-item .row {
-    justify-content: center;
-}
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #dfe7ec81;
-}
+
 .benefits-section {
     background-color: #005D9A; /* Warna biru */
     color: white; /* Font warna putih */
@@ -295,6 +285,20 @@ section {
     font-size: 45px; /* Ukuran ikon */
     margin: 10px; 
 }
+.navbar-brand img {
+    height: 40px;
+}
+.solutions .card-img {
+    width: 100%;
+    height: auto;
+}
+
+.solutions .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
 /* Media Queries */
 
@@ -339,9 +343,19 @@ section {
         margin-right: 20px;
         font-size: 20px;
     }
+
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+    }
 }
 
-/* For devices with a width of 768px or less */
+/* 768px  */
 @media (max-width: 768px) {
     .container {
         width: 100%;
@@ -382,13 +396,22 @@ section {
     .logos img {
         width: 600px;
         margin-bottom: 70rem;
-        
     }
 
     .solutions p {
         margin-left: 10px;
         margin-right: 10px;
         font-size: 18px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
     }
 }
 
@@ -421,7 +444,7 @@ section {
     }
 
     .ship_alert img {
-        width: 400px;
+        width: 360px;
     }
 
     .ship_alert p {
@@ -440,16 +463,41 @@ section {
         font-size: 16px;
     }
 
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+    }
+
     .team .team-members img {
         width: 150px;
         height: auto;
     }
-}
 
-      
+    .d-flex.flex-wrap {
+        flex-direction: column;
+    }
+
+    
+
+}
     </style>
 </head>
 <body>
+    
+     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="width: 100%;">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('asset/logo.png') }}" alt="Logo">
+        </a>
+        <div class="ml-auto">
+            <a class="btn btn-outline-dark btn-custom shadow" href="dashboard.blade.php">Lacak kapal</a>
+        </div>
+    </nav>
+    
     <div class="container">
         <section class="header">
             <div>
@@ -474,14 +522,14 @@ section {
     </section>
     <section class="filosofi">
         <div>
-        <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>
+        <h2 style="text-align: center; font-size: 30px;"> <b>Filosofi Logo</b> </h2>
         <img src="{{ asset('asset/filosofi_logo2.png') }}" alt="SHIP ALERT Logo">
         </div>
     </section>
     <section class="team">
         <div>
             <h2 style="text-align: center; font-size: 40px;"><b>Tim SHIP ALERT</b></h2>
-            <img src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT" style="width: 1100px; height: 450px;">
+            <img class="team-image" src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT">
             <div class="team-members">
                 <img src="{{ asset('asset/pembimbing.png') }}" alt="Pembimbing">
                 <img src="{{ asset('asset/ketua.png') }}" alt="Ketua">
@@ -492,105 +540,86 @@ section {
         </div>
     </section>
     <section class="solutions">
-    <div>
-        <h2><b>Solusi dan Fitur Unggulan SHIP ALERT</b></h2>
-        <p>Fitur unggulan dari proyek SHIP ALERT mencakup beberapa aspek yang meningkatkan keselamatan dan efisiensi operasional di laut. Berikut adalah fitur-fitur utamanya:</p>
-        <div id="solutionsCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">1. Peringatan Kecelakaan Real-Time Tanpa Internet</h5>
-                                    <img src="{{ asset('asset/alert.png') }}" alt="Feature Image 1" class="card-img">
-                                </div>
-                            </div>
+        <div class="container">
+            <h2 class="text-center mb-5"><b>Solusi dan Fitur Unggulan SHIP ALERT</b></h2>
+            <p class="text-center mb-4">Fitur unggulan dari proyek SHIP ALERT mencakup beberapa aspek yang meningkatkan keselamatan dan efisiensi operasional di laut. Berikut adalah fitur-fitur utamanya:</p>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">1. Peringatan Kecelakaan Real-Time Tanpa Internet</h5>
+                            <img src="{{ asset('asset/alert.png') }}" alt="Feature Image 1" class="card-img">
                         </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">2. Dilengkapi dengan berbagai Sensor Canggih</h5>
-                                    <img src="{{ asset('asset/sensor_canggih.png') }}" alt="Feature Image 2" class="card-img">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">3. Fitur Darurat Tombol SOS</h5>
-                                    <img src="{{ asset('asset/sos.png') }}" alt="Feature Image 3" class="card-img">
-                                </div>
-                            </div>
-                        </div>
-                        <p style="margin: 50px; font-size:20px; text-align:justify;">
-                            SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini memberikan peringatan kecelakaan real-time tanpa internet, memungkinkan nelayan menerima informasi penting meskipun berada di lokasi terpencil. Dilengkapi dengan berbagai sensor canggih, seperti GPS, sensor kemiringan, dan sensor air, SHIP ALERT dapat memantau kondisi kapal secara menyeluruh. Selain itu, fitur darurat tombol SOS memungkinkan nelayan mengirimkan sinyal bantuan dengan cepat dalam situasi darurat, memastikan respon yang lebih cepat dan peningkatan keselamatan di laut.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">4. Menyediakan Tampilan Dashboard Monitoring real time</h5>
-                                    <img style="max-height: 170px;" src="{{ asset('asset/dashboardd.png') }}" alt="Feature Image 4" class="card-img">
-                                </div>
-                            </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">2. Dilengkapi dengan berbagai Sensor Canggih</h5>
+                            <img src="{{ asset('asset/sensor_canggih.png') }}" alt="Feature Image 2" class="card-img">
                         </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">5. Menampilkan Grafik Data Histori</h5>
-                                    <img src="{{ asset('asset/histori.png') }}" alt="Feature Image 5" class="card-img">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">6. Dirancang dengan Efisiensi Energi yang Optimal</h5>
-                                    <img style="max-height: 170px;" src="{{ asset('asset/energi.png') }}" alt="Feature Image 6" class="card-img">
-                                </div>
-                            </div>
-                        </div>
-                        <p style="margin: 50px; font-size:20px; text-align:justify;">
-                            SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini menyediakan tampilan dashboard monitoring real-time yang memungkinkan nelayan memantau kondisi kapal secara langsung, menampilkan grafik data histori yang membantu dalam analisis dan pengambilan keputusan berdasarkan data suhu, gelombang, dan cuaca. Selain itu, SHIP ALERT dirancang dengan efisiensi energi optimal, memastikan bahwa perangkat dapat beroperasi dalam jangka waktu yang lama tanpa sering mengganti baterai, membuatnya ideal untuk penggunaan di lingkungan laut yang keras dan sering kali tanpa akses listrik.</p>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">7. Antarmuka Pengguna yang Intuitif dan mudah digunakan</h5>
-                                    <img style="max-height: 170px;" src="{{ asset('asset/antarmuka.png') }}" alt="Feature Image 7" class="card-img">
-                                </div>
-                            </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">3. Fitur Darurat Tombol SOS</h5>
+                            <img src="{{ asset('asset/sos.png') }}" alt="Feature Image 3" class="card-img">
                         </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">8. Kompatibilitas Luas dan fleksibel sehingga mudah diimplementasikan</h5>
-                                    <img style="max-height: 170px;" src="{{ asset('asset/kompatibilitas.png') }}" alt="Feature Image 8" class="card-img">
-                                </div>
-                            </div>
-                        </div>
-                        <p style="margin: 50px; font-size:20px; text-align:justify;">
-                            SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini memiliki antarmuka pengguna yang intuitif dan mudah digunakan, sehingga nelayan dan awak kapal dapat dengan cepat memahami dan mengoperasikannya tanpa memerlukan pelatihan khusus. Selain itu, SHIP ALERT dirancang dengan kompatibilitas yang luas dan fleksibel, memungkinkan integrasi dengan berbagai perangkat dan sistem yang sudah ada di kapal, sehingga implementasinya menjadi lebih mudah dan tidak memerlukan perubahan besar pada infrastruktur yang ada.</p>
                     </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">4. Menyediakan Tampilan Dashboard Monitoring real-time</h5>
+                            <img style="max-height: 170px;" src="{{ asset('asset/dashboardd.png') }}" alt="Feature Image 4" class="card-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">5. Menampilkan Grafik Data Histori</h5>
+                            <img src="{{ asset('asset/histori.png') }}" alt="Feature Image 5" class="card-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">6. Dirancang dengan Efisiensi Energi yang Optimal</h5>
+                            <img style="max-height: 170px;" src="{{ asset('asset/energi.png') }}" alt="Feature Image 6" class="card-img">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">7. Antarmuka Pengguna yang Intuitif dan mudah digunakan</h5>
+                                <img style="max-height: 170px;" src="{{ asset('asset/antarmuka.png') }}" alt="Feature Image 7" class="card-img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">8. Kompatibilitas Luas dan fleksibel sehingga mudah diimplementasikan</h5>
+                                <img style="max-height: 170px;" src="{{ asset('asset/kompatibilitas.png') }}" alt="Feature Image 8" class="card-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mx-auto">
+                    <p style="margin: 30px 0; font-size:20px; text-align:justify;">
+                        SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini menyediakan tampilan dashboard monitoring real-time yang memungkinkan nelayan memantau kondisi kapal secara langsung, menampilkan grafik data histori yang membantu dalam analisis dan pengambilan keputusan berdasarkan data suhu, gelombang, dan cuaca. Selain itu, SHIP ALERT dirancang dengan efisiensi energi optimal, memastikan bahwa perangkat dapat beroperasi dalam jangka waktu yang lama tanpa sering mengganti baterai, membuatnya ideal untuk penggunaan di lingkungan laut yang keras dan sering kali tanpa akses listrik.
+                    </p>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#solutionsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#solutionsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </div>
-</section>
+    </section>
+    
+    
 <section class="benefits-section">
     <div>
             <h2> <b>Manfaat SHIP ALERT?</b> </h2>
@@ -606,6 +635,7 @@ section {
             </p>
         </div>
 </section>
+
 <section class="Sosmed">
 <div class="container mt-5">
     <h2><b>Sosial Media Kami</b></h2>

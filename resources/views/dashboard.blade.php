@@ -278,14 +278,14 @@
         }
     
         async function updateCharts() {
-            const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/2.json?api_key=1WCAPVC94C3AB1TD');
+            const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD');
             const dataGelombang = await fetchData('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD');
-            const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD');
+            const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/5.json?api_key=1WCAPVC94C3AB1TD');
     
             const labels = dataSuhu.feeds.map(feed => new Date(feed.created_at).toLocaleTimeString('id-ID'));
-            const suhuData = dataSuhu.feeds.map(feed => parseFloat(feed.field2).toFixed(2));
+            const suhuData = dataSuhu.feeds.map(feed => parseFloat(feed.field4).toFixed(2));
             const gelombangData = dataGelombang.feeds.map(feed => parseFloat(feed.field3).toFixed(2));
-            const cuacaData = dataCuaca.feeds.map(feed => parseFloat(feed.field4).toFixed(2));
+            const cuacaData = dataCuaca.feeds.map(feed => parseFloat(feed.field5).toFixed(2));
     
             const ctx1 = document.getElementById('lineChart1').getContext('2d');
             new Chart(ctx1, {

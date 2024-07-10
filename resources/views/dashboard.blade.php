@@ -65,6 +65,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin-bottom: 20px; /* Ensure there's spacing between boxes */
         }
         .info-title {
             font-size: 32px;
@@ -167,24 +168,32 @@
                             <div class="info-box">
                                 <div class="info-time" id="time2">Tanggal / Jam</div>
                                 <div class="info-title">Gelombang</div>
-                                <div class="info-value">5 Meter</div>
+                                <div class="info-value" id="gelombang">Mdpl</div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 mb-4">
                             <div class="info-box">
                                 <div class="info-time" id="time3">Tanggal / Jam</div>
                                 <div class="info-title">Cuaca</div>
-                                <div class="info-value">Hujan</div>
+                                <div class="info-value" id="cuaca">Hujan</div>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 mb-4">
                             <div class="info-box">
                                 <div class="info-time" id="time4">Tanggal / Jam</div>
                                 <div class="info-title1">Lokasi</div>
-                                <div class="info-value1">Lat :<br> Long :</div>
-                            </div>
+                                <div class="info-value1">Lat : <span id="latitude">-</span><br> Long : <span id="longtitude">-</span></div>
+                            </div> 
+                        </div>   
+                        <div class="col-md-6 col-sm-6 mb-4">
+                            <div class="info-box" style="background-color: green; color: white;">
+                                <div class="info-time" id="time5">Tanggal / Jam</div>
+                                <div class="info-title1">Status</div>
+                                <div class="info-value1">Aman</div>
+                            </div>    
                         </div>
-                        <button class="btn-reset">Reset Tracking</button>
+                            <button class="btn-reset">Reset Tracking</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -196,8 +205,16 @@
         <div class="container">
             <h2>HISTORI DATA</h2>
             <div class="row">
+                <div class="col-md-12">
+                    <label for="timeRange">Pilih Rentang Waktu:</label>
+                    <select id="timeRange" onchange="updateCharts()">
+                        <option value="1day">1 Hari</option>
+                        <option value="1week">1 Minggu</option>
+                        <option value="1month">1 Bulan</option>
+                    </select>
+                </div>
                 <div class="col-md-6 col-sm-12 chart-container">
-                    <div class="chart ">
+                    <div class="chart">
                         <canvas id="lineChart1"></canvas>
                     </div>
                 </div>
@@ -222,142 +239,223 @@
     <script>
         // Initialize map
         var map = L.map('map').setView([-6.292430293657109, 106.72546172243526], 15);
-
+    
         // Add OpenStreetMap tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
-
+    
         // Add a marker to the map at the specified coordinates
         var marker = L.marker([-6.292430293657109, 106.72546172243526]).addTo(map);
         marker.bindPopup("<b>Lokasi</b><br>Ini adalah lokasi marker.").openPopup();
-
+    
         // Ensure the map occupies the entire screen
         map.invalidateSize();
-
+    
+        window.addEventListener('resize', function () {
+            setTimeout(function () {
+                map.invalidateSize();
+            }, 100);
+        });
+    
         function updateDateTime() {
             var now = new Date();
-            var date = now.toLocaleDateString('id-ID');
-            var time = now.toLocaleTimeString('id-ID');
-            var dateTime = date + ' / ' + time;
-            
+            var dateTime = now.toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
             document.getElementById('time1').innerText = dateTime;
             document.getElementById('time2').innerText = dateTime;
             document.getElementById('time3').innerText = dateTime;
             document.getElementById('time4').innerText = dateTime;
+            document.getElementById('time5').innerText = dateTime;
         }
+    
+        // fetch data suhu
+        fetch('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD&results=1')
+        .then(response => response.json())
+        .then(data => {
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const suhu = parseFloat(lastEntry.field4).toFixed(2);
+            document.getElementById('suhu').innerText = suhu + ' C';
+        })
+        .catch(error => console.error('Error:', error));
+
+  // fetch data gelombang
         fetch('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD&results=1')
         .then(response => response.json())
         .then(data => {
-        console.log(data); // Log untuk melihat data yang dikembalikan
-        const lastEntry = data.feeds[data.feeds.length - 1];
-        console.log(lastEntry); // Log untuk melihat data entry terakhir
-        const suhu = parseFloat(lastEntry.field3).toFixed(2);
-        document.getElementById('suhu').innerText = suhu + ' C';
-        document.getElementById('last_entry_id').innerText = 'ID: ' + data.channel.last_entry_id;
-    })
-    .catch(error => console.error('Error:', error)); // Log untuk melihat jika terjadi error
-
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const gelombang = parseFloat(lastEntry.field3).toFixed(2);
+            document.getElementById('gelombang').innerText = gelombang + ' Mdpl';
+        })
         setInterval(updateDateTime, 1000);
-        async function fetchData(url) {
-            const response = await fetch(url);
-            return response.json();
+    // fetch data cuaca
+        fetch('https://api.thingspeak.com/channels/1976791/fields/5.json?api_key=1WCAPVC94C3AB1TD&results=1')
+        .then(response => response.json())
+        .then(data => {
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const cuaca = parseFloat(lastEntry.field5).toFixed(2);
+            document.getElementById('cuaca').innerText = cuaca ;
+        })
+        setInterval(updateDateTime, 1000);
+// latitud
+fetch('https://api.thingspeak.com/channels/1976887/fields/1.json?api_key=1WCAPVC94C3AB1TD&results=1')
+        .then(response => response.json())
+        .then(data => {
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const latitude = parseFloat(lastEntry.field1).toFixed(5);
+            document.getElementById('latitude').innerText = latitude ;
+        })
+        setInterval(updateDateTime, 1000);
+
+// longtitude
+fetch('https://api.thingspeak.com/channels/1976887/fields/2.json?api_key=1WCAPVC94C3AB1TD&results=1')
+        .then(response => response.json())
+        .then(data => {
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const longtitude = parseFloat(lastEntry.field2).toFixed(5);
+            document.getElementById('longtitude').innerText = longtitude ;
+        })
+        setInterval(updateDateTime, 1000);
+
+
+
+
+
+
+
+
+
+        async function fetchData(url, range) {
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    const now = new Date();
+    let fromDate;
+
+    if (range === '1day') {
+        fromDate = new Date(now.setDate(now.getDate() - 1));
+    } else if (range === '1week') {
+        fromDate = new Date(now.setDate(now.getDate() - 7));
+    } else if (range === '1month') {
+        fromDate = new Date(now.setMonth(now.getMonth() - 1));
+    }
+
+    return data.feeds.filter(feed => new Date(feed.created_at) >= fromDate);
+}
+
+async function updateCharts() {
+    const timeRange = document.getElementById('timeRange').value;
+    
+    const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD', timeRange);
+    const dataGelombang = await fetchData('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD', timeRange);
+    const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/5.json?api_key=1WCAPVC94C3AB1TD', timeRange);
+
+    const labels = dataSuhu.map(feed => new Date(feed.created_at).toLocaleTimeString('id-ID'));
+    const suhuData = dataSuhu.map(feed => parseFloat(feed.field4).toFixed(2));
+    const gelombangData = dataGelombang.map(feed => parseFloat(feed.field3).toFixed(2));
+    const cuacaData = dataCuaca.map(feed => parseFloat(feed.field5).toFixed(2));
+
+    const ctx1 = document.getElementById('lineChart1').getContext('2d');
+    new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Suhu',
+                data: suhuData,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 2,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
+    });
 
-        async function updateCharts() {
-            const dataSuhu = await fetchData('https://api.thingspeak.com/channels/1976791/fields/2.json?api_key=1WCAPVC94C3AB1TD');
-            const dataGelombang = await fetchData('https://api.thingspeak.com/channels/1976791/fields/3.json?api_key=1WCAPVC94C3AB1TD');
-            const dataCuaca = await fetchData('https://api.thingspeak.com/channels/1976791/fields/4.json?api_key=1WCAPVC94C3AB1TD');
-
-            const labels = dataSuhu.feeds.map(feed => new Date(feed.created_at).toLocaleTimeString('id-ID'));
-            const suhuData = dataSuhu.feeds.map(feed => parseFloat(feed.field2).toFixed(2));
-            const gelombangData = dataGelombang.feeds.map(feed => parseFloat(feed.field3).toFixed(2));
-            const cuacaData = dataCuaca.feeds.map(feed => parseFloat(feed.field4).toFixed(2));
-
-            const ctx1 = document.getElementById('lineChart1').getContext('2d');
-            new Chart(ctx1, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Suhu',
-                        data: suhuData,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderWidth: 2,
-                        fill: true,
-                    }]
+    const ctx2 = document.getElementById('lineChart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Gelombang',
+                data: gelombangData,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 2,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
                 },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
+                y: {
+                    beginAtZero: true
                 }
-            });
-
-            const ctx2 = document.getElementById('lineChart2').getContext('2d');
-            new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Gelombang',
-                        data: gelombangData,
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderWidth: 2,
-                        fill: true,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            const ctx3 = document.getElementById('lineChart3').getContext('2d');
-            new Chart(ctx3, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Cuaca',
-                        data: cuacaData,
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderWidth: 2,
-                        fill: true,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        },
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+            }
         }
+    });
 
-        updateCharts();
-        setInterval(updateCharts, 10000);
+    const ctx3 = document.getElementById('lineChart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Cuaca',
+                data: cuacaData,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderWidth: 2,
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+updateCharts();
+setInterval(updateCharts, 10000);
+    
+        async function updateMap() {
+            const data = await fetchData('https://api.thingspeak.com/channels/1976791/feeds.json?api_key=1WCAPVC94C3AB1TD&results=1');
+            const lastEntry = data.feeds[data.feeds.length - 1];
+            const latitude = parseFloat(lastEntry.field1);
+            const longitude = parseFloat(lastEntry.field2);
+            const markerPosition = [latitude, longitude];
+    
+            marker.setLatLng(markerPosition);
+            map.setView(markerPosition, 15);
+    
+            document.getElementById('latitude').innerText = latitude;
+            document.getElementById('longitude').innerText = longitude;
+        }
+    
+        updateMap();
+        setInterval(updateMap, 10000);
     </script>
+    
 </body>
 </html>

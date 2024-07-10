@@ -455,27 +455,6 @@ setInterval(updateCharts, 10000);
     
         updateMap();
         setInterval(updateMap, 10000);
-        
-        // Array to store the coordinates
-var coordinates = [];
-
-// Polyline for tracking
-var polyline = L.polyline([], {color: 'blue'}).addTo(map);
-
-// Function to update tracking data
-function updateTracking(latitude, longitude) {
-    var latLng = L.latLng(latitude, longitude);
-    coordinates.push(latLng);
-    polyline.setLatLngs(coordinates);
-    map.setView(latLng, 13);
-}
-
-// Reset tracking data
-function resetTracking() {
-    coordinates = [];
-    polyline.setLatLngs(coordinates);
-}
-
     </script>
     
 </body>

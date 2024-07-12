@@ -494,7 +494,7 @@ section {
             <img src="{{ asset('asset/logo.png') }}" alt="Logo">
         </a>
         <div class="ml-auto">
-            <a class="btn btn-outline-dark btn-custom shadow" href="dashboard.blade.php">Lacak kapal</a>
+            <a class="btn btn-outline-dark btn-custom shadow" href="/dashboard">Lacak kapal</a>
         </div>
     </nav>
     

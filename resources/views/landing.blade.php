@@ -9,13 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
- /* CSS Responsif untuk bagian .solutions dan elemen lainnya */
-
-body {
+    body {
     font-family: 'Inter', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -25,7 +21,6 @@ body {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    height: 100vh;
 }
 section {
     height: 100%;
@@ -37,7 +32,7 @@ section {
 .header img {
     width: 213px;
     height: 209px;
-    margin-top: -10px;
+    margin-top: 50px;
 }
 .header h1 {
     margin: 20px 0 10px;
@@ -72,25 +67,23 @@ section {
 .logos img {
     width: 665px;
     height: 90px;
-    margin-bottom: 75rem;
+    margin: 50 15px;
     vertical-align: middle;
-   
+    margin-bottom: 20px;
 }
 .ship_alert {
     background-color: #39a2d5;
     color: white;
     padding: 40px 20px;
     border-radius: 8px;
-    height: 100vh;
 }
 .ship_alert img {
-    width: 500px;
+    width: 600px;
     margin-bottom: 20px;
 }
 .ship_alert h2 {
     font-size: 40px;
     margin-bottom: 80px;
-    margin-top:10px;
 }
 .ship_alert p {
     font-size: 26px;
@@ -124,10 +117,6 @@ section {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
-}
-.team-image {
-    width: 1100px;
-    height: 450px;
 }
 .team .team-members {
     display: flex;
@@ -165,7 +154,6 @@ section {
     text-align: justify;
 }
 .card {
-    border-radius: 10px;
     width: 350px;
     height: 300px;
     transition: background-color 0.3s, color 0.3s;
@@ -178,26 +166,38 @@ section {
     font-size: 24px;
     font-weight: bold;
 }
-.card-img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
+.solutions {
+        padding: 50px 0;
+        background-color: #f8f9fa;
+    }
+    .card {
+        background-color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+   
+    .card-body {
+        padding: 20px;
+    }
+    .card-img {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
     object-position: center;
-}
-
+    }
+    .text-center {
+        text-align: center;
+    }
 .benefits-section {
-    margin-top:39rem;
     background-color: #005D9A; /* Warna biru */
     color: white; /* Font warna putih */
     padding: 40px;
     text-align: center;
-    height: 100vh;
 }
 .benefits-section h2 {
     font-size: 40px;
-    padding: 24px;
+    margin-bottom: 20px;
 }
-
 .benefits-section ul {
     font-size: 24px;
     list-style-type: none; /* Menghilangkan bullet points */
@@ -219,19 +219,50 @@ section {
 .benefits-section ul li b {
     font-weight: bold;
 }
-
+.contact-section {
+    background-color: #f4f4f4;
+    padding: 40px;
+}
+.contact-section h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+.contact-form .form-label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+.contact-form .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.contact-form .btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 .footer-section {
     background-color: #005D9A;
     color: #fff;
-    margin:0;
-    padding:0;
-}.footer-section .container {
+    padding: 40px 0;
+}
+.footer-section .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 80%; /* Change this value as needed */
+    max-width: 1200px;
     margin: 0 auto;
-   
+    padding: 0 20px;
 }
 .footer-section .logo {
     font-size: 24px;
@@ -243,32 +274,72 @@ section {
 .footer-section p {
     margin: 10px 0;
 }
-
-
+.footer-section .social-icons img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+.footer-section .bottom-text {
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+}
 .instagram-icon {
     color: #ffffff; /* Warna ikon default */
     font-size: 45px; /* Ukuran ikon */
     margin: 10px; 
 }
 .navbar-brand img {
-    height: 40px;
-}
-.solutions .card-img {
-    width: 100%;
-    height: auto;
-}
-
-.solutions .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
+            height: 40px;
+        }
 
 /* Media Queries */
 
-/* 768px  */
+/* For devices with a width of 1024px or less */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%;
+    }
+
+    .header h1 {
+        font-size: 70px;
+    }
+
+    .header p {
+        font-size: 24px;
+    }
+
+    .header button {
+        width: 300px;
+        height: 60px;
+        font-size: 1em;
+        padding: 15px 30px;
+    }
+
+    .ship_alert img {
+        width: 500px;
+    }
+
+    .ship_alert p {
+        padding-left: 50px;
+        padding-right: 50px;
+        font-size: 22px;
+    }
+
+    .logos img {
+        width: 500px;
+        height: auto;
+    }
+
+    .solutions p {
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 20px;
+    }
+}
+
+/* For devices with a width of 768px or less */
 @media (max-width: 768px) {
     .container {
         width: 100%;
@@ -278,11 +349,10 @@ section {
     .header img {
         width: 300px;
         height: auto;
-        margin-top: -70px;
     }
 
     .header h1 {
-        font-size: 70px;
+        font-size: 50px;
     }
 
     .header p {
@@ -291,8 +361,8 @@ section {
 
     .header button {
         width: 350px;
-        height: 60px;
-        font-size: 1.2em;
+        height: 50px;
+        font-size: 0.9em;
         padding: 10px 20px;
     }
 
@@ -309,22 +379,13 @@ section {
     .logos img {
         width: 600px;
         margin-bottom: 70rem;
+        
     }
 
     .solutions p {
         margin-left: 10px;
         margin-right: 10px;
         font-size: 18px;
-    }
-
-    .card {
-        width: 100%;
-        height: auto;
-    }
-
-    .card-img {
-        width: 100%;
-        height: auto;
     }
 }
 
@@ -357,7 +418,7 @@ section {
     }
 
     .ship_alert img {
-        width: 360px;
+        width: 400px;
     }
 
     .ship_alert p {
@@ -376,33 +437,17 @@ section {
         font-size: 16px;
     }
 
-    .card {
-        width: 100%;
-        height: auto;
-    }
-
-    .card-img {
-        width: 100%;
-        height: auto;
-    }
-
     .team .team-members img {
         width: 150px;
         height: auto;
     }
-
-    .d-flex.flex-wrap {
-        flex-direction: column;
-    }
-
-    
-
 }
+
+      
     </style>
 </head>
 <body>
-    
-     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="width: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="width: 100%;">
         <a class="navbar-brand" href="#">
             <img src="{{ asset('asset/logo.png') }}" alt="Logo">
         </a>
@@ -410,7 +455,7 @@ section {
             <a class="btn btn-outline-dark btn-custom shadow" href="/dashboard">Lacak kapal</a>
         </div>
     </nav>
-    
+
     <div class="container">
         <section class="header">
             <div>
@@ -435,14 +480,14 @@ section {
     </section>
     <section class="filosofi">
         <div>
-        <h2 style="text-align: center; font-size: 30px;"> <b>Filosofi Logo</b> </h2>
+        <h2 style="text-align: center; font-size: 40px;"> <b>Filosofi Logo</b> </h2>
         <img src="{{ asset('asset/filosofi_logo2.png') }}" alt="SHIP ALERT Logo">
         </div>
     </section>
     <section class="team">
         <div>
             <h2 style="text-align: center; font-size: 40px;"><b>Tim SHIP ALERT</b></h2>
-            <img class="team-image" src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT">
+            <img src="{{ asset('asset/team.png') }}" alt="Tim SHIP ALERT" style="width: 1100px; height: 450px;">
             <div class="team-members">
                 <img src="{{ asset('asset/pembimbing.png') }}" alt="Pembimbing">
                 <img src="{{ asset('asset/ketua.png') }}" alt="Ketua">
@@ -452,85 +497,96 @@ section {
             </div>
         </div>
     </section>
-    <section class="solutions">
-        <div class="container">
-            <h2 class="text-center mb-5"><b>Solusi dan Fitur Unggulan SHIP ALERT</b></h2>
-            <p class="text-center mb-4">Fitur unggulan dari proyek SHIP ALERT mencakup beberapa aspek yang meningkatkan keselamatan dan efisiensi operasional di laut. Berikut adalah fitur-fitur utamanya:</p>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">1. Peringatan Kecelakaan Real-Time Tanpa Internet</h5>
-                            <img src="{{ asset('asset/alert.png') }}" alt="Feature Image 1" class="card-img">
-                        </div>
+  <section class="solutions">
+    <div class="container">
+        <h2 class="text-center mb-5"><b>Solusi dan Fitur Unggulan SHIP ALERT</b></h2>
+        <p class="text-center mb-4">Fitur unggulan dari proyek SHIP ALERT mencakup beberapa aspek yang meningkatkan keselamatan dan efisiensi operasional di laut. Berikut adalah fitur-fitur utamanya:</p>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">1. Peringatan Kecelakaan Real-Time Tanpa Internet</h5>
+                        <img src="{{ asset('asset/alert.png') }}" alt="Feature Image 1" class="card-img">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">2. Dilengkapi dengan berbagai Sensor Canggih</h5>
-                            <img src="{{ asset('asset/sensor_canggih.png') }}" alt="Feature Image 2" class="card-img">
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">2. Dilengkapi dengan berbagai Sensor Canggih</h5>
+                        <img src="{{ asset('asset/sensor_canggih.png') }}" alt="Feature Image 2" class="card-img">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">3. Fitur Darurat Tombol SOS</h5>
-                            <img src="{{ asset('asset/sos.png') }}" alt="Feature Image 3" class="card-img">
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">3. Fitur Darurat Tombol SOS</h5>
+                        <img src="{{ asset('asset/sos.png') }}" alt="Feature Image 3" class="card-img">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">4. Menyediakan Tampilan Dashboard Monitoring real-time</h5>
-                            <img style="max-height: 170px;" src="{{ asset('asset/dashboardd.png') }}" alt="Feature Image 4" class="card-img">
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">4. Menyediakan Tampilan Dashboard Monitoring real-time</h5>
+                        <img style="max-height: 170px;" src="{{ asset('asset/dashboardd.png') }}" alt="Feature Image 4" class="card-img">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">5. Menampilkan Grafik Data Histori</h5>
-                            <img src="{{ asset('asset/histori.png') }}" alt="Feature Image 5" class="card-img">
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">5. Menampilkan Grafik Data Histori</h5>
+                        <img src="{{ asset('asset/histori.png') }}" alt="Feature Image 5" class="card-img">
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">6. Dirancang dengan Efisiensi Energi yang Optimal</h5>
-                            <img style="max-height: 170px;" src="{{ asset('asset/energi.png') }}" alt="Feature Image 6" class="card-img">
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">6. Dirancang dengan Efisiensi Energi yang Optimal</h5>
+                        <img style="max-height: 170px;" src="{{ asset('asset/energi.png') }}" alt="Feature Image 6" class="card-img">
                     </div>
                 </div>
-                <div class="d-flex flex-wrap justify-content-center">
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">7. Antarmuka Pengguna yang Intuitif dan mudah digunakan</h5>
-                                <img style="max-height: 170px;" src="{{ asset('asset/antarmuka.png') }}" alt="Feature Image 7" class="card-img">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">8. Kompatibilitas Luas dan fleksibel sehingga mudah diimplementasikan</h5>
-                                <img style="max-height: 170px;" src="{{ asset('asset/kompatibilitas.png') }}" alt="Feature Image 8" class="card-img">
-                            </div>
-                        </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">7. Antarmuka Pengguna yang Intuitif dan mudah digunakan</h5>
+                        <img style="max-height: 170px;" src="{{ asset('asset/antarmuka.png') }}" alt="Feature Image 7" class="card-img">
                     </div>
                 </div>
-                <div class="col-12 mx-auto">
-                    <p style="margin: 30px 0; font-size:20px; text-align:justify;">
-                        SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini menyediakan tampilan dashboard monitoring real-time yang memungkinkan nelayan memantau kondisi kapal secara langsung, menampilkan grafik data histori yang membantu dalam analisis dan pengambilan keputusan berdasarkan data suhu, gelombang, dan cuaca. Selain itu, SHIP ALERT dirancang dengan efisiensi energi optimal, memastikan bahwa perangkat dapat beroperasi dalam jangka waktu yang lama tanpa sering mengganti baterai, membuatnya ideal untuk penggunaan di lingkungan laut yang keras dan sering kali tanpa akses listrik.
-                    </p>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">8. Kompatibilitas Luas dan fleksibel sehingga mudah diimplementasikan</h5>
+                        <img style="max-height: 170px;" src="{{ asset('asset/kompatibilitas.png') }}" alt="Feature Image 8" class="card-img">
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div class="row">
+            <div class="col-12">
+                <p style="margin: 30px 0; font-size:20px; text-align:justify;">
+                    SHIP ALERT menawarkan solusi dan fitur unggulan yang meningkatkan keselamatan dan efisiensi operasional di laut. Sistem ini menyediakan tampilan dashboard monitoring real-time yang memungkinkan nelayan memantau kondisi kapal secara langsung, menampilkan grafik data histori yang membantu dalam analisis dan pengambilan keputusan berdasarkan data suhu, gelombang, dan cuaca. Selain itu, SHIP ALERT dirancang dengan efisiensi energi optimal, memastikan bahwa perangkat dapat beroperasi dalam jangka waktu yang lama tanpa sering mengganti baterai, membuatnya ideal untuk penggunaan di lingkungan laut yang keras dan sering kali tanpa akses listrik.
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+    
 <section class="benefits-section">
     <div>
             <h2> <b>Manfaat SHIP ALERT?</b> </h2>
@@ -619,6 +675,14 @@ section {
            
         </div>
     </div>
+    <!-- <div class="bottom-text">
+        <div class="social-icons">
+            <a href="https://www.instagram.com/ship.allert?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" style="color: #E1306C;">
+                <i class="fab fa-instagram instagram-icon"></i>
+            </a>
+           
+        </div>
+    </div> -->
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

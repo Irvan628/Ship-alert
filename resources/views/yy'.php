@@ -126,6 +126,22 @@
             width: 100%;
         }
 
+      .modal-dialog {
+            max-width: 90%; /* Adjust this value as needed */
+        }
+        .modal-content {
+            font-size: 2em; /* Make text larger */
+            text-align: center; /* Center text */
+        }
+        .modal-body p {
+            margin: 0;
+        }
+        .modal-header, .modal-footer {
+            justify-content: center;
+        }
+        .info-box {
+            text-align: center;
+        }
         #notification {
     display: none;
     background-color: red;
@@ -137,75 +153,11 @@
     text-align: center;
     font-weight: bold;
 }
-.modal-dialog {
-  max-width: 70%; /* Ubah sesuai kebutuhan, misalnya 80% dari lebar layar */
-}
-
-.modal-content {
-  height: 30vh; /* Ubah sesuai kebutuhan, misalnya 80% dari tinggi viewport */
-}
-#dangerModal .modal-content {
-  background-color: red;
-  color: white;
-}
-
-#dangerModal .modal-title, 
-#dangerModal .modal-body, 
-#dangerModal .modal-footer {
-  font-size: 30px; /* Ubah ukuran font sesuai kebutuhan Anda */
-}
-
-#dangerModal .modal-header .close {
-  color: white;
-}
-.modal {
-            width: 500px;
-            max-height: 400px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: center;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none;
-            z-index: 1000;
-        }
-        .modal .header {
-            background-color: #ff4c4c;
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
+.danger-alert {
+            background-color: red;
             color: white;
         }
-        .modal .header .icon {
-            font-size: 24px;
-        }
-        .modal .content {
-            margin: 5px;
-            font-size: 26px;
-            padding: 20px;
-            color: #333;
-        }
-        .modal .content p {
-            margin: 0;
-        }
-        .modal .footer {
-            padding: 10px;
-        }
-        .modal .footer button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff4c4c;
-            color: white;
-            cursor: pointer;
-        }
-        .modal .footer button:hover {
-            background-color: #ff1a1a;
-        }
-
+        
         @media (max-width: 768px) {
             .chart-container {
                 height: auto;
@@ -258,47 +210,64 @@
                                 <div class="info-value" id="cuaca">Hujan</div>
                             </div>
                         </div>
-                      
                         <div class="col-md-6 col-sm-6 mb-4">
                             <div class="info-box">
                                 <div class="info-time" id="time4">Tanggal / Jam</div>
                                 <div class="info-title1">Lokasi</div>
                                 <div class="info-value1">Lat : <span id="latitude">-</span><br> Long : <span id="longtitude">-</span></div>
-                            </div>
-                        </div>
+                            </div> 
+                        </div>   
                         <div class="col-md-6 col-sm-6 mb-4">
-                            <div class="info-box" style="background-color: green; color: white;" id="statusBox">
+                            <div class="info-box" style="background-color: green; color: white;">
                                 <div class="info-time" id="time5">Tanggal / Jam</div>
-                                <div class="info-title1" id="statusTitle">Status</div>
-                                <div class="info-value1" id="statusValue">Aman</div>
-                            </div>
+                                <div class="info-value1">Status</div>
+                                <div class="info-value1"  id="status-value">Aman</div>
+                            </div>    
                         </div>
-                        
                             <button class="btn-reset" id="trackResetBtn">Reset Tracking</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="modal" id="alertModal">
-                <div class="header">
-                    <div class="icon">⚠️</div>
-                    <h2>WARNING</h2>
-                </div>
-                <div class="content">
-                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: row; margin:10px;">
-                        <h1 style="margin: 0;">KAPAL</h1>
-                        <h1 style="margin: 0 5px;">DALAM</h1>
-                        <h1 style="margin: 0;">BAHAYA!!</h1>
+            <div class="modal fade" id="dangerModal" tabindex="-1" role="dialog" aria-labelledby="dangerModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="dangerModalLabel">Peringatan Bahaya</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
-                    <p id="coordinates">Latitude: <span id="modalLatitude"></span><br>Longitude: <span id="modalLongitude"></span></p>
+                    <div class="modal-body">
+                      <p id="dangerMessage">Kapal dalam bahaya!</p>
+                      <p id="coordinates">Latitude: <span id="modalLatitude"></span><br>Longitude: <span id="modalLongitude"></span></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    </div>
+                  </div>
                 </div>
-                <div class="footer">
-                    <button onclick="closeModal()">Cancel</button>
-                </div>
-            </div>
-        
+              </div>
         </div>
-       
+        <div class="modal fade" id="dangerModal" tabindex="-1" role="dialog" aria-labelledby="dangerModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="dangerModalLabel">Peringatan Bahaya</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p id="dangerMessage">Kapal dalam bahaya!</p>
+                  <p id="coordinates">Latitude: <span id="modalLatitude"></span><br>Longitude: <span id="modalLongitude"></span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+              </div>
+            </div>
+          </div>
     </section>
     <!-- SECTION CHART -->
     <section id="section2">
@@ -329,52 +298,44 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-  document.getElementById('trackResetBtn').addEventListener('click', function() {
-    // Mengambil data latitude
-    fetch('https://api.thingspeak.com/channels/1976887/fields/1.json?api_key=1WCAPVC94C3AB1TD&results=1')
-        .then(response => response.json())
-        .then(dataLat => {
-            const latitude = dataLat.feeds[0].field1;
-            document.getElementById('latitude').textContent = latitude;
-
-            // Mengambil data longitude
-            fetch('https://api.thingspeak.com/channels/1976887/fields/2.json?api_key=1WCAPVC94C3AB1TD&results=1')
+          document.getElementById('trackResetBtn').addEventListener('click', function() {
+            // Mengambil data latitude
+            fetch('https://api.thingspeak.com/channels/1976887/fields/1.json?api_key=1WCAPVC94C3AB1TD&results=1')
                 .then(response => response.json())
-                .then(dataLong => {
-                    const longitude = dataLong.feeds[0].field2;
-                    document.getElementById('longtitude').textContent = longitude;
+                .then(dataLat => {
+                    const latitude = dataLat.feeds[0].field1;
+                    document.getElementById('latitude').textContent = latitude;
 
-                    // Menampilkan notifikasi bahaya
-                    document.getElementById('modalLatitude').textContent = latitude;
-                    document.getElementById('modalLongitude').textContent = longitude;
-                    $('#dangerModal').modal('show');
+                    // Mengambil data longitude
+                    fetch('https://api.thingspeak.com/channels/1976887/fields/2.json?api_key=1WCAPVC94C3AB1TD&results=1')
+                        .then(response => response.json())
+                        .then(dataLong => {
+                            const longitude = dataLong.feeds[0].field2;
+                            document.getElementById('longtitude').textContent = longitude;
 
-                    // Mengubah status menjadi tidak aman pada elemen dengan id "statusBox"
-                    const statusBox = document.getElementById('statusBox');
-                    const statusTitle = document.getElementById('statusTitle');
-                    const statusValue = document.getElementById('statusValue');
-                    statusTitle.textContent = 'Status';
-                    statusValue.textContent = 'Tidak Aman';
-                    statusBox.style.backgroundColor = 'red';
-                    statusBox.style.color = 'white';
+                            // Menampilkan notifikasi bahaya
+                            document.getElementById('modalLatitude').textContent = latitude;
+                            document.getElementById('modalLongitude').textContent = longitude;
+                            $('#dangerModal').modal('show');
+
+                            // Mengubah status menjadi tidak aman
+                           
+                            var isDanger = false;  // replace with actual logic
+                            if (latitude > SOME_LAT_THRESHOLD || longitude > SOME_LON_THRESHOLD) {
+                        isDanger = true;
+                    }
+                            if (isDanger) {
+                        $('#status-box').removeClass('info-box').addClass('danger-alert');
+                        $('#status-box .info-value1').text('Bahaya');
+                    } else {
+                        $('#status-box').removeClass('danger-alert').addClass('info-box');
+                        $('#status-box .info-value1').text('Aman');
+                    }
+                        })
+                        .catch(error => console.error('Error fetching longitude data:', error));
                 })
-                .catch(error => console.error('Error fetching longitude data:', error));
-        })
-        .catch(error => console.error('Error fetching latitude data:', error));
-});
-
-
-const trackResetBtn = document.getElementById('trackResetBtn');
-        const alertModal = document.getElementById('alertModal');
-
-        trackResetBtn.addEventListener('click', () => {
-            alertModal.style.display = 'block';
+                .catch(error => console.error('Error fetching latitude data:', error));
         });
-
-        function closeModal() {
-            alertModal.style.display = 'none';
-        }
-
         // Initialize map
         var map = L.map('map').setView([-6.292430293657109, 106.72546172243526], 15);
     

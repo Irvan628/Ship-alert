@@ -159,7 +159,7 @@
   color: white;
 }
 .modal {
-            width: 500px;
+            width: 250px;
             max-height: 400px;
             padding: 20px;
             background-color: #fff;
@@ -183,8 +183,6 @@
             font-size: 24px;
         }
         .modal .content {
-            margin: 5px;
-            font-size: 26px;
             padding: 20px;
             color: #333;
         }
@@ -285,12 +283,7 @@
                     <h2>WARNING</h2>
                 </div>
                 <div class="content">
-                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: row; margin:10px;">
-                        <h1 style="margin: 0;">KAPAL</h1>
-                        <h1 style="margin: 0 5px;">DALAM</h1>
-                        <h1 style="margin: 0;">BAHAYA!!</h1>
-                    </div>
-                    <p id="coordinates">Latitude: <span id="modalLatitude"></span><br>Longitude: <span id="modalLongitude"></span></p>
+                    <p>KAPAL DALAM BAHAYA!!</p>
                 </div>
                 <div class="footer">
                     <button onclick="closeModal()">Cancel</button>
